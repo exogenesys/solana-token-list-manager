@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 const { getAuthenticatedOctokit } = require("../auth");
-
 const {
   owner,
   repo,
@@ -11,39 +10,20 @@ const {
   branch,
 } = require("../config.js");
 
-function encodeData(data) {
-  return Buffer.from(JSON.stringify(data, null, 2), "utf8").toString("base64");
-}
-
-function decodeData(data) {
-  return JSON.parse(Buffer.from(data, "base64").toString("utf8"));
-}
-
-function insertNewToken(newToken, json) {
-  let tokenArray = json.tokens;
-  tokenArray.push(newToken);
-  json.tokens = tokenArray;
-  return json;
-}
+const {
+  validateToken,
+  decodeData,
+  encodeData,
+  insertNewToken,
+} = require("../utils.js");
 
 /* GET users listing. */
 router.post("/form-submit", async (req, res, next) => {
   try {
-    const message = "TOKEN: new token added";
-
-    const newToken = {
-      chainId: 101,
-      address: "8z55xQupEQcjAQTJy3BwZJX24pmtCJDo8MEe9Ub7a3Yv",
-      symbol: "HARSH",
-      name: "HarshGautam",
-      decimals: 9,
-      logoURI:
-        "https://raw.githubusercontent.com/dyor-market/token-list/main/assets/mainnet/8z55xQupEQcjAQTJy3BwZJX24pmtCJDo8MEe9Ub7a3Yv/logo.svg",
-      tags: [],
-      extensions: {
-        website: "https://shakudo.io/",
-      },
-    };
+    const token = req.body;
+    const validToken = validateToken(token);
+    console.log("validToken -->", validToken);
+    const message = `New Token Added: $${validToken.symbol} via token-list-manager-bot`;
 
     const octokit = await getAuthenticatedOctokit();
 
@@ -54,10 +34,8 @@ router.post("/form-submit", async (req, res, next) => {
       path,
     });
 
-    console.log("sha -> ", data.sha, typeof data.sha);
-
     const oldContent = decodeData(data.content);
-    const content = encodeData(insertNewToken(newToken, oldContent));
+    const content = encodeData(insertNewToken(validToken, oldContent));
 
     await octokit.repos.createOrUpdateFileContents({
       owner,
