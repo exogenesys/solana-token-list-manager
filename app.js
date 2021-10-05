@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 var indexRouter = require("./routes/index");
-var webhookRouter = require("./routes/webhook");
+var tokenListManagerRouter = require("./routes/webhook");
 
 var app = express();
 
@@ -19,6 +19,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/webhook", webhookRouter);
+app.use("/token-list-manager/", tokenListManagerRouter);
 
 module.exports = app;

@@ -18,7 +18,7 @@ const {
 } = require("../utils.js");
 
 /* GET users listing. */
-router.post("/form-submit", async (req, res, next) => {
+router.post("/add-token", async (req, res, next) => {
   try {
     const token = req.body;
     const validToken = validateToken(token);
