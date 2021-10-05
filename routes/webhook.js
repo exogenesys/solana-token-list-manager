@@ -1,6 +1,6 @@
-var express = require("express");
-var router = express.Router();
-const { getAuthenticatedOctokit } = require("../auth");
+const express = require('express');
+const router = express.Router();
+const {getAuthenticatedOctokit} = require('../auth');
 const {
   owner,
   repo,
@@ -8,25 +8,25 @@ const {
   committer,
   author,
   branch,
-} = require("../config.js");
+} = require('../config.js');
 
 const {
   validateToken,
   decodeData,
   encodeData,
   insertNewToken,
-} = require("../utils.js");
+} = require('../utils.js');
 
-router.post("/add-token", async (req, res, next) => {
+router.post('/add-token', async (req, res, next) => {
   try {
     const token = req.body;
     const validToken = validateToken(token);
-    console.log("validToken -->", validToken);
+    console.log('validToken -->', validToken);
     const message = `New Token Added: $${validToken.symbol} via token-list-manager-bot`;
 
     const octokit = await getAuthenticatedOctokit();
 
-    const { data } = await octokit.repos.getContent({
+    const {data} = await octokit.repos.getContent({
       owner,
       repo,
       branch,
@@ -47,7 +47,7 @@ router.post("/add-token", async (req, res, next) => {
       author,
       sha: data.sha,
     });
-    res.status(200).send("token added to repo");
+    res.status(200).send('token added to repo');
   } catch (error) {
     console.log(error);
     res.status(500).send(error.message);

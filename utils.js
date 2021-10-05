@@ -1,13 +1,13 @@
 function encodeData(data) {
-  return Buffer.from(JSON.stringify(data, null, 2), "utf8").toString("base64");
+  return Buffer.from(JSON.stringify(data, null, 2), 'utf8').toString('base64');
 }
 
 function decodeData(data) {
-  return JSON.parse(Buffer.from(data, "base64").toString("utf8"));
+  return JSON.parse(Buffer.from(data, 'base64').toString('utf8'));
 }
 
 function insertNewToken(newToken, json) {
-  let tokenArray = json.tokens;
+  const tokenArray = json.tokens;
   tokenArray.push(newToken);
   json.tokens = tokenArray;
   return json;
@@ -15,61 +15,61 @@ function insertNewToken(newToken, json) {
 
 function isValidString(str, max = 1000, min = 0) {
   return (
-    str && typeof str === "string" && str.length >= min && str.length <= max
+    str && typeof str === 'string' && str.length >= min && str.length <= max
   );
 }
 
 function isValidNumber(number) {
-  return number && typeof number === "number";
+  return number && typeof number === 'number';
 }
 
 function isValidArrayOfStrings(array) {
   return (
-    typeof array === "object" &&
+    typeof array === 'object' &&
     array.reduce(
-      (previousValue, currentValue) => typeof currentValue === "string"
+        (previousValue, currentValue) => typeof currentValue === 'string',
     )
   );
 }
 
 function isValidObjectOfStrings(object) {
   return (
-    typeof object === "object" &&
+    typeof object === 'object' &&
     Object.values(object).reduce(
-      (previousValue, currentValue) => typeof currentValue === "string"
+        (previousValue, currentValue) => typeof currentValue === 'string',
     )
   );
 }
 
 function validateToken(token) {
   try {
-    let validToken = {
+    const validToken = {
       chainId: 101,
-      address: "",
-      symbol: "",
-      name: "",
+      address: '',
+      symbol: '',
+      name: '',
       decimals: 9,
-      logoURI: "",
+      logoURI: '',
       tags: [],
       extensions: {},
     };
 
-    if (isValidNumber(Number(token.chainId)))
+    if (isValidNumber(Number(token.chainId))) {
       validToken.chainId = Number(token.chainId);
-    else throw new Error("invalid token attribute chainId");
+    } else throw new Error('invalid token attribute chainId');
 
     if (isValidString(token.address)) validToken.address = token.address;
-    else throw new Error("invalid token attribute address");
+    else throw new Error('invalid token attribute address');
 
     if (isValidString(token.symbol, 10, 3)) validToken.symbol = token.symbol;
-    else throw new Error("invalid token attribute symbol");
+    else throw new Error('invalid token attribute symbol');
 
     if (isValidString(token.name, 20, 1)) validToken.name = token.name;
-    else throw new Error("invalid token attribute name");
+    else throw new Error('invalid token attribute name');
 
-    if (isValidNumber(Number(token.decimals)))
+    if (isValidNumber(Number(token.decimals))) {
       validToken.decimals = Number(token.decimals);
-    else throw new Error("invalid token attribute decimals");
+    } else throw new Error('invalid token attribute decimals');
 
     if (isValidString(token.logoURI)) validToken.logoURI = token.logoURI;
 
@@ -90,8 +90,8 @@ function validateToken(token) {
     return validToken;
   } catch (error) {
     console.log(error);
-    throw new Error("invalid token: unknown error");
+    throw new Error('invalid token: unknown error');
   }
 }
 
-module.exports = { insertNewToken, validateToken, encodeData, decodeData };
+module.exports = {insertNewToken, validateToken, encodeData, decodeData};
