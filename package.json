@@ -1,5 +1,5 @@
 {
-  "name": "token-list-manager-bot",
+  "name": "solana-token-list-manager",
   "version": "0.0.0",
   "private": true,
   "main": "index.js",
