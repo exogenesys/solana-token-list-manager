@@ -2,20 +2,64 @@
   <head>
     <title>Express</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css"
+      integrity="sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
-
   <body>
-    <h1>Token List Manager Bot</h1>
-    <section>
-      <a href="https://github.com/exogenesys/token-list-manager-bot">Github</a>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <span class="has-text-weight-bold">Solana Tools</span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a
+                href="https://github.com/exogenesys/token-list-manager-bot"
+                class="button is-rounded is-black"
+              >
+                <strong>Github</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section class="hero is-success is-bold">
+      <div class="hero-body">
+        <h1 class="title">Token List Manager Bot</h1>
+        <p class="subtitle">
+          To add a token to solana-labs/token-list repo, fill this form
+        </p>
+      </div>
     </section>
-    <p>
-      To add token to solana-labs/token-list repo,
-      <a
-        href="https://docs.google.com/forms/d/e/1FAIpQLSdQ51E94kYWfn-wbi-494lez_LTxpXHWhddO8iyf7DxL9HOnA/viewform?usp=sf_link"
-      >
-        fill this form
-      </a>
-    </p>
+    <section class="section">
+      <div class="container">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSdQ51E94kYWfn-wbi-494lez_LTxpXHWhddO8iyf7DxL9HOnA/viewform?embedded=true"
+          width="640"
+          height="1452"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          >Loading…</iframe
+        >
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <a href="https://github.com/exogenesys/token-list-manager-bot"
+          >Github</a
+        >
+      </div>
+    </footer>
   </body>
 </html>
