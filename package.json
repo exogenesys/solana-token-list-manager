@@ -7,8 +7,8 @@
     "node": "14.x"
   },
   "scripts": {
-    "start": "node NODE_ENV=production ./bin/www",
-    "dev": "nodemon NODE_ENV=development ./bin/www"
+    "start": "NODE_ENV=production node ./bin/www",
+    "dev": "NODE_ENV=development nodemon ./bin/www"
   },
   "dependencies": {
     "@octokit/auth-app": "^3.6.0",
