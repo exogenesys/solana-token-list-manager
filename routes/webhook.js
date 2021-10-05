@@ -17,7 +17,6 @@ const {
   insertNewToken,
 } = require("../utils.js");
 
-/* GET users listing. */
 router.post("/add-token", async (req, res, next) => {
   try {
     const token = req.body;
