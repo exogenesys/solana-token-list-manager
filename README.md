@@ -1,11 +1,9 @@
-install dependencies:
-`npm install`
+### How To Deploy
 
-run the app:
-`DEBUG=token-list-manager-bot:* npm start`
+1. Run `heroku config:set APP_ID=[APP_ID] CLIENT_ID=[CLIENT_ID] CLIENT_SECRET=[CLIENT_SECRET] PRIVATE_KEY=[PRIVATE_KEY]`
 
-### to deploy
+### How To Develop
 
-1. create an env file with the following you need to deploy:
-
-`heroku config:set APP_ID=[APP_ID] INSTALLATION_ID=[INSTALLATION_ID] PRIVATE_KEY=[PRIVATE_KEY]`
+1. Run `npm install`
+2. Create an `.env` file from `.env.example`
+3. Run `npm run dev`
