@@ -1,3 +1,6 @@
+### Motivation
+- Manually adding a bot is a notoriously tough process than one would think. Read more: https://github.com/solana-labs/token-list/issues/852#issuecomment-934584948
+
 ### How it works
 1. Make a POST request with token data in json format on the url: `/token-list-manager/add-token` (optionally via the form at https://solana-tools.herokuapp.com)
 
